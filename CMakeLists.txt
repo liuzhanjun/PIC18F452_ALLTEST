@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.15)
+project(pic18F452_allTest C)
+set(CMAKE_C_STANDARD 99)
+
+aux_source_directory(. src)
+set(CMAKE_C_FLAGS "-xassembler-with-cpp -mwarn=-3 -Wa,-a -O0 -fasmfile -maddrqual=ignore")
+set(CMAKE_C_LINK_EXECUTABLE "-Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -fno-short-double -fno-short-float -memi=wordwrite  -ginhx032 -msummary=-psect,-class,+mem,-hex,-file")
+include_directories(./inc)
+#include_directories("D:/Program Files/xc8/v2.10/pic/include")
+add_executable(pic18F452_allTest ${src})
