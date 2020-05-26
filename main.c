@@ -57,13 +57,12 @@
 
 #include <xc.h>
 #include <stdio.h>
-#include <pic18f452.h>
 #include "Buzzer.h"
 #include "LED_lights.h"
 #include "lcd.h"
 #include "Usart.h"
 #include "KeyBoardScan.h"
-
+#include "spi.h"
 //蜂鸣器调用
 
 void buzzer_function() {
@@ -141,28 +140,11 @@ void key_board(){
 }
 
 void main(void) {
-    init_lcd();
-    //    L_KEY_TRIS = (0xF0 | (0x01 << 0));
-    //    L_KEY_PIN = (0xF0 | (0x01 << 0));
-    //
-    //    unsigned char result =0x07;
-    //    result|= (L_KEY_PIN & 0x0F) << 3;
-    //    setBaud(9600); //设置波特率
-    //    send_Config(); //发送配置
-    //    receive_Config(); //接收配置
-    //    serial_tx(result);
-
-
-
-//    setBaud(9600); //设置波特率
-//    send_Config(); //发送配置
-//    receive_Config(); //接收配置
-
-
-
+    spi_Master_init();
+    spi_send_bt('A');
 
     while (1) {
-        key_board();
+
         
     };
     return;

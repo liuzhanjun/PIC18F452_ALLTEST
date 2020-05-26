@@ -2,7 +2,7 @@
 // Created by YH31 on 2020/5/22.
 //
 
-#include <pic18f452.h>
+
 #include "Usart.h"
 
 /**

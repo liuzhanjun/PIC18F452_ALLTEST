@@ -7,6 +7,7 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include "configration.h"
 #define H_KEY_PIN PORTB  //纵向引脚
 #define H_KEY_TRIS TRISB //此/纵向引脚阵列的数据方向（控制输出还是输入）
 

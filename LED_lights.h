@@ -5,7 +5,7 @@
 #ifndef PIC18F452_ALLTEST_LED_LIGHTS_H
 #define PIC18F452_ALLTEST_LED_LIGHTS_H
 
-#include <pic18f452.h>
+
 #include "xc.h"
 
 #define LED1_LIGHTS_OUT_SET TRISD
