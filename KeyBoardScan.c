@@ -3,7 +3,6 @@
 //
 
 #include "KeyBoardScan.h"
-#include "Usart.h"
 
 unsigned char scan_keyBoard_Listener() {
 
