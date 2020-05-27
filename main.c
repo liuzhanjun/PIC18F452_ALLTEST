@@ -63,6 +63,9 @@
 #include "Usart.h"
 #include "KeyBoardScan.h"
 #include "spi.h"
+#include "i2c.h"
+#include "eeprom_ext.h"
+
 //蜂鸣器调用
 
 void buzzer_function() {
@@ -130,22 +133,33 @@ void Usart() {
  * 将该函数放置在main函数的while循环中
  * 在之前需要调用LCD的init_lcd();
  */
-void key_board(){
-    close_lcd();//
-    unsigned char  result = scan_keyBoard_Listener();
+void key_board() {
+    close_lcd(); //
+    unsigned char result = scan_keyBoard_Listener();
     restart_lcd();
     //显示在LCD上
-    showLcd_char(result,0);
-    close_lcd();//
+    showLcd_char(result, 0);
+    close_lcd(); //
 }
 
 void main(void) {
-    spi_Master_init();
-    spi_send_bt('A');
+    init_lcd();
+    SSPCON1bits.SSPEN = 0;
+    i2c_init();
+//    write_eeprom(0x00, 0xA8);
+//     write_eeprom(0x01, 0xAC);
+
+    i2c_start();
+    char ack=i2c_sendByte(0xA0);
+    i2c_stop();
+    if (ack){
+        showLcd_char('1',0);
+    }else{
+        showLcd_char('0',0);
+    }
 
     while (1) {
 
-        
     };
     return;
 

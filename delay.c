@@ -26,6 +26,14 @@ void delay_200ms() {
 
 }
 
+void delay_8Nop() {
+    NOP();
+    NOP();
+    NOP();
+    NOP();
+
+}
+
 
 
 
