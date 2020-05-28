@@ -65,6 +65,7 @@
 #include "spi.h"
 #include "i2c.h"
 #include "eeprom_ext.h"
+#include "mssp_i2c_master.h"
 
 //蜂鸣器调用
 
@@ -142,30 +143,34 @@ void key_board() {
     close_lcd(); //
 }
 
-void i2c_by_io(){
+void i2c_by_io_eeprom() {
+    init_lcd();
     i2c_init();
-    write_eeprom(0x00, 'N');
+    write_eeprom(0x1F0, 'N');
     write_eeprom(0x01, 'B');
-    unsigned char result=read_eeprom(0x00);
-    unsigned char result2=read_eeprom(0x01);
+    unsigned char result = read_eeprom(0x00);
+    unsigned char result2 = read_eeprom(0x01F0);
+    showLcd_char(result2, 0);
 }
+
+void mssp_i2c_eeprom() {
+    init_lcd();
+    mssp_i2c_init();
+  char result=  mssp_read_eeprom(0x00);
+////    char result=mssp_read_eeprom(0x110);
+    showLcd_char(result,0);
+}
+
 void main(void) {
 //    setBaud(9600); //设置波特率
 //    send_Config(); //发送配置
 //    receive_Config(); //接收配置
-    init_lcd();
-    SSPCON1bits.SSPEN = 0;
-    i2c_init();
-    write_eeprom(0x01, 'B');
-
-    unsigned char result=read_eeprom(0x00);
-    unsigned char result2=read_eeprom(0x01);
-    showLcd_char(result,0);
-
-    showLcd_char(result2,1);
-
+        init_lcd();
+        mssp_i2c_init();
+        mssp_write_eeprom(0x00,0x99);
     while (1) {
-
+            
+        
     };
     return;
 

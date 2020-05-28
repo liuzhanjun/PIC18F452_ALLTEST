@@ -10,8 +10,8 @@
 #define SCL_PIN PORTCbits.RC3
 #define SDA_PIN PORTCbits.RC4
 
-#define SCL_TRIS TRISCbits.RC3
-#define SDA_TRIS TRISCbits.RC4
+#define SCL_TRIS TRISCbits.TRISC3
+#define SDA_TRIS TRISCbits.TRISC4
 
 void i2c_init();
 void i2c_start();
