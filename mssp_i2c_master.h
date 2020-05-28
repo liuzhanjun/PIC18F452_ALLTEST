@@ -1,0 +1,9 @@
+//
+// Created by YH31 on 2020/5/28.
+//
+
+#ifndef PIC18F452_ALLTEST_MSSP_I2C_MASTER_H
+#define PIC18F452_ALLTEST_MSSP_I2C_MASTER_H
+#include <xc.h>
+
+#endif //PIC18F452_ALLTEST_MSSP_I2C_MASTER_H

@@ -142,6 +142,13 @@ void key_board() {
     close_lcd(); //
 }
 
+void i2c_by_io(){
+    i2c_init();
+    write_eeprom(0x00, 'N');
+    write_eeprom(0x01, 'B');
+    unsigned char result=read_eeprom(0x00);
+    unsigned char result2=read_eeprom(0x01);
+}
 void main(void) {
 //    setBaud(9600); //设置波特率
 //    send_Config(); //发送配置
