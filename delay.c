@@ -26,7 +26,7 @@ void delay_200ms() {
 
 }
 
-void delay_8Nop() {
+void delay_4Nop() {
     NOP();
     NOP();
     NOP();

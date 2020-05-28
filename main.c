@@ -143,20 +143,19 @@ void key_board() {
 }
 
 void main(void) {
+//    setBaud(9600); //设置波特率
+//    send_Config(); //发送配置
+//    receive_Config(); //接收配置
     init_lcd();
     SSPCON1bits.SSPEN = 0;
     i2c_init();
-//    write_eeprom(0x00, 0xA8);
-//     write_eeprom(0x01, 0xAC);
+    write_eeprom(0x01, 'B');
 
-    i2c_start();
-    char ack=i2c_sendByte(0xA0);
-    i2c_stop();
-    if (ack){
-        showLcd_char('1',0);
-    }else{
-        showLcd_char('0',0);
-    }
+    unsigned char result=read_eeprom(0x00);
+    unsigned char result2=read_eeprom(0x01);
+    showLcd_char(result,0);
+
+    showLcd_char(result2,1);
 
     while (1) {
 

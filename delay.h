@@ -12,5 +12,5 @@
 //延迟多少秒
 void delay_200ms();
 
-void delay_8Nop();
+void delay_4Nop();
 #endif //PIC18F452_ALLTEST_DELAY_H
