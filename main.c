@@ -156,21 +156,30 @@ void i2c_by_io_eeprom() {
 void mssp_i2c_eeprom() {
     init_lcd();
     mssp_i2c_init();
-  char result=  mssp_read_eeprom(0x00);
-////    char result=mssp_read_eeprom(0x110);
-    showLcd_char(result,0);
+    char result = mssp_read_eeprom(0x00);
+    ////    char result=mssp_read_eeprom(0x110);
+    showLcd_char(result, 0);
 }
 
+
+void __interrupt() tcIntx(void){
+    if(SSPIF){
+        serial_tx('N');
+    }
+}
 void main(void) {
-//    setBaud(9600); //设置波特率
-//    send_Config(); //发送配置
-//    receive_Config(); //接收配置
-        init_lcd();
-        mssp_i2c_init();
-        mssp_write_eeprom(0x00,0x99);
+    setBaud(9600); //设置波特率
+    send_Config(); //发送配置
+    receive_Config(); //接收配置
+//    init_lcd();
+//    
+    mssp_i2c_init();
+    mssp_write_eeprom(0x00,0x88);
+
+   
+ 
     while (1) {
-            
-        
+      
     };
     return;
 

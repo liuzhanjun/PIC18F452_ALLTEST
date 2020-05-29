@@ -3,7 +3,7 @@
 //
 
 #include "eeprom_ext.h"
-
+#include "Usart.h"
 void write_eeprom(uint16_t addr, unsigned char data) {
 
     i2c_start();
@@ -56,13 +56,13 @@ void conn_eeprom_r(uint16_t addr) {
 
 char mssp_write_eeprom(int16_t addr, int8_t data) {
     mssp_i2c_start();
-    unsigned char addr_h = ((addr >> 8) & 0x01);
+     unsigned char addr_h = ((addr >> 8) & 0x01);
     if (addr_h) {
         mssp_i2c_write(0xA2);
     } else {
         mssp_i2c_write(0xA0);
     }
-    mssp_i2c_write((addr & 0x0FF));
+    mssp_i2c_write((addr & 0xFF));
     mssp_i2c_write(data);
     mssp_i2c_stop();
 }
