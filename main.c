@@ -66,7 +66,7 @@
 #include "i2c.h"
 #include "eeprom_ext.h"
 #include "mssp_i2c_master.h"
-
+#include "STK3311_x.h"
 //蜂鸣器调用
 
 void buzzer_function() {
@@ -167,6 +167,7 @@ void __interrupt() tcIntx(void){
         serial_tx('N');
     }
 }
+
 void main(void) {
     setBaud(9600); //设置波特率
     send_Config(); //发送配置
@@ -175,6 +176,7 @@ void main(void) {
 //    
     mssp_i2c_init();
     mssp_write_eeprom(0x00,0x88);
+
 
    
  
